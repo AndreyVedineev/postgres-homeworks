@@ -14,6 +14,9 @@ insert_order = "INSERT INTO orders VALUES (%s, %s, %s, %s, %s)"
 
 
 def insert_tabl(path, insert):
+    """Заполняет таблицы employees, customers, orders из файлов employees_data.csv, customers_data.csv,
+    orders_data.csv"""
+
     conn = psycopg2.connect(
         host='localhost',
         database='north',
@@ -23,8 +26,7 @@ def insert_tabl(path, insert):
     try:
         with open(path, encoding='UTF-8', newline='') as csvfile:
             reader = csv.reader(csvfile)
-            headers = next(csvfile)
-            print(headers)
+            next(csvfile)  # пропуск заголовка таблицы, так можно?
             for row in reader:
                 with conn:
                     with conn.cursor() as cur:
