@@ -40,8 +40,7 @@ WHERE order_details.quantity=10
 ORDER BY products.product_name
 
 
-
-SELECT DISTINCT products.product_name FROM products
+SELECT DISTINCT product_name FROM products
 INNER JOIN order_details USING(product_id)
-WHERE order_details.product_id IN (SELECT product_id FROM order_details WHERE quantity=10)
-ORDER BY products.product_name
+WHERE product_id IN (SELECT product_id FROM order_details WHERE quantity=10)
+ORDER BY product_name;
